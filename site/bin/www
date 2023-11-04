@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+const app = require('../server')
+const http = require('http')
+const fs = require('fs')
+const config = require("config")
+/**
+ * Create HTTP server.
+ */
+
+const server = http.createServer(app)
+
+const env = config.env
+
+server.listen(config.port, config.host)
+server.on('error', onError)
+server.on('listening', () =>console.log(`Server listening on http://${config.host}:${config.port}`))
+
+//  Event listener for HTTP server "error" event.
+function onError (error) {
+  if (error.syscall !== 'listen') {
+    throw error
+  }
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(sock_path + ' requires elevated privileges')
+      process.exit(1)
+      break
+    case 'EADDRINUSE':
+      console.error(sock_path + ' is already in use')
+      process.exit(1)
+      break
+    default:
+      throw error
+  }
+}

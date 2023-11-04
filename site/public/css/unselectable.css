@@ -1,0 +1,20 @@
+html {
+    background-color:#07360A
+}
+#uns{
+    pointer-events: none;
+    user-select: none;
+}
+
+#box{
+    border-radius: 25px;
+    border: 2px solid;
+    box-shadow: 5px 10px 8px #330033;
+    width: 700px;
+    float:left;
+}
+
+#payload-view {
+    font-size: 1.5em!important;
+}
+

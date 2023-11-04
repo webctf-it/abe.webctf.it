@@ -1,0 +1,22 @@
+version: "3.5"
+services:
+  pm2:
+    build: .
+    restart: always
+    read_only: true
+    tmpfs:
+        - /tmp
+        - /root/.pm2
+    ports:
+        - "127.0.0.1:2081:8000"
+    logging:
+        driver: "json-file"
+        options:
+            max-file: "1"
+            max-size: "20m"
+    networks:
+       - default
+networks:
+    default:
+        driver_opts:
+            com.docker.network.bridge.name: abe

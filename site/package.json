@@ -1,0 +1,23 @@
+{
+  "name": "abe",
+  "version": "0.0.9",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon node ./bin/www"
+  },
+  "author": "sugardaddy & frenz",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.9",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "puppeteer-core": "^21.5.0",
+    "sequelize": "^6.34.0",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
+  }
+}

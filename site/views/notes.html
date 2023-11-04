@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <title>Abe:D</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="css/unselectable.css" />
+  </head>
+
+  <body>
+    <div>
+      <nav
+        class="navbar"
+        role="navigation"
+        aria-label="main navigation"
+        style="background-color:#fc9003;"
+      >
+        <div class="navbar-brand">
+          <a
+            role="button"
+            data-target="nav-menu"
+            class="navbar-burger burger"
+            aria-label="menu"
+            aria-expanded="false"
+          >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div
+          class="navbar-menu"
+          id="nav-menu"
+          style="background-color:#fc9003;"
+        >
+          <div class="navbar-start">
+            <a class="navbar-item" style="background-color:#a86d32 ;" href="/">
+              <span class="icon is-medium ">
+                <img src="/images/64x64blind.png" />
+              </span>
+              <span style="color:white;">Home</span>
+            </a>
+            <a class="navbar-item" style="background-color:#a89d32 ;" href="/abe">
+              <span class="icon is-medium ">
+                <img src="/images/64x64blind.png" alt="home_icon"/>
+              </span>
+              <span style="color:white;">Abe's secret</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <br />
+      <br />
+
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <div class="box" id="box">
+            <article class="media">
+              <div class="media-content">
+                <div class="content has-text-centered">
+                  <%if(typeof note !== 'undefined') { %>
+                  <h1>Your note:</h1>
+                  <h5 id="payload-view"></h5>
+                  <button
+                    class="button is-link  button is-medium is-fullwidth"
+                    id="report"
+                  >
+                    Report to Abe&nbsp;<img src="/images/48x48Sorriso.png" />
+                  </button>
+                  <br />
+                  <a
+                    class="button is-danger  button is-medium is-fullwidth"
+                    href="/"
+                  >
+                    Back <img src="/images/48x48M.png" />
+                  </a>
+                  <% } else { %>
+                  <h1>No notes for you</h1>
+                  <a
+                    class="button is-danger  button is-medium is-fullwidth"
+                    href="/"
+                  >
+                    Create <img src="/images/48x48M.png" />
+                  </a>
+
+                  <% } %>
+                </div>
+                <nav class="level is-mobile">
+                  <div class="level-left"></div>
+                </nav>
+              </div>
+            </article>
+          </div>
+        </div>
+        <img src="/images/pngegg.png" height="20%" width="20%" />
+      </div>
+    </div>
+    <script src="js/utils.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.0/axios.min.js"
+      integrity="sha512-DZqqY3PiOvTP9HkjIWgjO6ouCbq+dxqWoJZ/Q+zPYNHmlnI2dQnbJ5bxAHpAMw+LXRm4D72EIRXzvcHQtE8/VQ=="
+      crossorigin="anonymous"
+    ></script>
+    <%if(typeof note !== 'undefined') { %>
+    <script>
+      const note = document.getElementById('payload-view')
+      const noteHtml ="<%- note%>"
+      note.textContent = noteHtml
+      document.getElementById('report').addEventListener('click', () => {
+        fetch("/bot", {method: "POST"})
+	.then(res=> res.json())
+	.then(data=> alert(data.msg))
+	.catch(err => alert(err.msg))
+      })
+    </script>
+    <% } %>
+  </body>
+</html>

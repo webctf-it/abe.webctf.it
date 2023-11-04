@@ -1,0 +1,117 @@
+Current configuration : 1057 bytes
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname RouterR1
+!
+!
+!
+enable secret 5 $1$mERr$4tXBx9Q75AM.4N8zsRMG/.
+enable password 7 020911642A140A1E424B080B3A031A0E3302262A23173F3A2E5F6C6F6C5F6C6F6C5F6C6F6C
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain-name webctf.it
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface FastEthernet0/0.10
+ description Admin VLAN
+ encapsulation dot1Q 10
+ ip address 192.168.0.1 255.255.255.0
+ ip nat inside
+!
+interface FastEthernet1/0
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial2/0
+ no ip address
+ shutdown
+!
+interface Serial3/0
+ no ip address
+ shutdown
+!
+interface FastEthernet4/0
+ no ip address
+ switchport port-security aging type inactivity
+ shutdown
+!
+!
+!
+!
+!
+interface FastEthernet5/0
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address 00-d0-ba-11-21-31
+switchport port-security violation restrict
+ip address 1.1.1.1 255.255.255.0
+shutdown
+!
+ip classless
+no dns-lookup
+!
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+interface vlan2
+192.168.0.254 255.255.255.0
+!
+!
+!
+line 0
+login authentication MiaListaAutenticazione
+!
+line aux 0
+!
+line vty 0 4
+ password 7 02270608340F3C1E7E1D2815290E2D2358343A123529186132
+ logging synchronous
+ login local
+ exec-timeout 10
+ transport input ssh
+!
+!
+!
+admin authentication login MiaListaAutenticazione tacacs+
+tacacs-server host 192.168.0.101
+tacacs-server key MyPassword
+!
+end
+
